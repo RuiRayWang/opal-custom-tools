@@ -22,11 +22,7 @@ interface ExchangeRateResult {
 @tool({
   name: 'exchange-rate',
   description: 'Generates a table showing exchange rates for $100 USD to Euro, Pound, SEK, DKK, and NOK',
-  parameters: {
-    type: 'object',
-    properties: {},
-    required: []
-  }
+
 })
 export async function exchangeRate(params: ExchangeRateParams): Promise<ExchangeRateResult> {
   try {
