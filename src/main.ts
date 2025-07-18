@@ -31,9 +31,14 @@ const toolsService = new ToolsService(app);
 //import "./tools/todays-date";
 import "./tools/exchange-rate";
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Discovery endpoint: http://localhost:${PORT}/discovery`);
-});
+// Export the Express app for serverless environments
+export { app };
+
+// Start the server only when running locally (not in serverless environments)
+if (process.env.NODE_ENV !== 'production' || process.env.NETLIFY !== 'true') {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Discovery endpoint: http://localhost:${PORT}/discovery`);
+  });
+}
